@@ -7,7 +7,7 @@ external_scripts = [
     {"src": "https://cdn.tailwindcss.com"}
 ]
 
-app = Dash(__name__, external_scripts=external_scripts, assets_url_path="./assets")
+app = Dash(__name__, external_scripts=external_scripts)
 
 app.layout = html.Div(
     [

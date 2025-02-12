@@ -57,15 +57,11 @@ def topNavBar():
                         className="flex justify-around h-16",
                         children=[
                             # Logo,
+                            html.Img(src="assets/logos/Pentalytics.png"),
                             html.Div(
                                 className="flex-shrink-0 flex items-center",
                                 children=[
-                                    html.A(
-                                        className="text-xl font-bold",
-                                        href="#",
-                                        children="Pentadata",
-                                    ),
-                                    # Navigation Links
+                                    # # Navigation Links
                                     # html.Div(
                                     #     className="hidden md:flex space-x-4",
                                     #     children=[

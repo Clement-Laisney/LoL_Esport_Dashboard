@@ -1,0 +1,4 @@
+dash
+dash-svg
+pandas
+python-dotenv

@@ -56,10 +56,10 @@ def update_player_cardboard(playerdata):
     if playerdata:
         sumonnerdata = api.get_summoner_by_puuid(puuid=playerdata["puuid"])
         return (
-            f"#{playerdata["tagLine"]}",
+            f"#{playerdata['tagLine']}",
             playerdata["gameName"],
             f"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/profileicon/{sumonnerdata['profileIconId']}.png",
-            f"Level {sumonnerdata["summonerLevel"]}",
+            f"Level {sumonnerdata['summonerLevel']}",
         )
     else:
         return "#EUW", "Username", "https://avatar.iran.liara.run/public/41", "Level 25"

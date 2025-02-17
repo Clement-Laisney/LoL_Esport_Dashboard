@@ -38,7 +38,6 @@ def playerCardboard():
                     ),
                 ],
             ),
-            html.Div(children=[]),
         ],
     )
 

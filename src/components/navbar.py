@@ -1,6 +1,7 @@
 from dash import html, dcc, Input, Output, State, callback
-from dash_svg import Svg, Path
 from utils import validate_gamename_and_tagline, RiotAPI
+
+api = RiotAPI()
 
 
 def searchBar():
@@ -23,6 +24,24 @@ def searchBar():
             dcc.Store(id="account_information_store"),
         ],
     )
+
+
+@callback(
+    Output("account_information_store", "data"),
+    Input("top_navbar_search_bar", "n_submit"),
+    Input("top_navbar_search_button", "n_clicks"),
+    State("top_navbar_search_bar", "value"),
+)
+def search_player(n_submit, n_click, input_string):
+    if (n_click or n_submit) and validate_gamename_and_tagline(
+        input_string=input_string
+    ):
+        # split gamename and tagline
+        gamename = input_string.split("#")[0].strip(" ")
+        tagline = input_string.split("#")[-1].strip(" ")
+
+        data = api.get_account_by_riot_id(gameName=gamename, tagLine=tagline)
+        return data
 
 
 def topNavBar():

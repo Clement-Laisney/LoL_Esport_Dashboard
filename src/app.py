@@ -11,7 +11,18 @@ app = Dash(__name__, external_scripts=external_scripts)
 
 app.layout = html.Div(
     className="min-h-screen bg-slate-50 dark:bg-black dark:text-white",
-    children=[topNavBar()],
+    children=[
+        topNavBar(),
+        html.Div(
+            id="data_out",
+            children=[
+                html.Div(
+                    className="container mx-auto p-6 flex justify-center",
+                    children=[playerCardboard()],
+                ),
+            ],
+        ),
+    ],
 )
 
 

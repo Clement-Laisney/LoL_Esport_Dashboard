@@ -10,34 +10,20 @@ external_scripts = [
 app = Dash(__name__, external_scripts=external_scripts)
 
 app.layout = html.Div(
-    [
+    className="min-h-screen bg-slate-50 dark:bg-black dark:text-white",
+    children=[
         topNavBar(),
         html.Div(
-            className="pt-20",  # Padding pour éviter le chevauchement avec la navbar
+            id="data_out",
             children=[
-                playerCardboard(),
-                html.H1(
-                    "Welcome to My App",
-                    className="text-3xl font-bold text-center mt-10",
-                ),
-                html.P(
-                    "This is a sample Dash app with a Tailwind CSS navbar and a search bar.",
-                    className="text-center text-gray-600 mt-4",
-                ),
-                html.P(
-                    "This is a sample Dash app with a Tailwind CSS navbar and a search bar.",
-                    className="text-center text-gray-600 mt-4",
-                    id="data_out",
+                html.Div(
+                    className="container mx-auto p-6 flex justify-center",
+                    children=[playerCardboard()],
                 ),
             ],
         ),
-    ]
+    ],
 )
-
-
-@callback(Output("data_out", "children"), Input("account_information_store", "data"))
-def test_get_data(data):
-    return str(data)
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-from dash import html, dcc, callback, Input, Output
+from dash import html, callback, Input, Output
 from utils import RiotAPI
 
 api = RiotAPI()
@@ -6,41 +6,39 @@ api = RiotAPI()
 
 def playerCardboard():
     return html.Div(
-        className="bg-white text-white rounded-2xl shadow-lg p-6 w-80",
+        className="shadow-lg rounded-lg overflow-hidden w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl",
         children=[
-            # Avatar
             html.Div(
-                className="flex items-center space-x-4",
-                children=html.Img(
-                    className="w-16 h-16 rounded-full border-2 border-blue-500",
-                    alt="Player Avatar",
-                    src="https://via.placeholder.com/80",
-                    id="player_avatar",
-                ),
-            ),
-            # Player info
-            html.Div(
-                children=[
+                className="p-4",
+                children=[  # Avatar
+                    html.Img(
+                        className="w-32 h-32 mx-auto rounded-full border-4 border-white",
+                        alt="Player Avatar",
+                        src="https://via.placeholder.com/80",
+                        id="player_avatar",
+                    ),
+                    # Player info
                     html.H2(
-                        className="text-xl font-bold text-black",
+                        className="mt-4 text-2xl font-bold text-center",
                         children="GameName",
                         id="player_gamename",
                     ),
                     html.P(
-                        className="text-gray-400 text-sm",
+                        className="text-gray-600 text-center",
                         children="#tagline",
                         id="player_tagline",
                     ),
                     html.Div(
-                        className="mt-4",
+                        className="mt-4 flex justify-center",
                         children=html.Span(
-                            className="px-3 py-1 bg-blue-600 rounded-full text-sm font-semibold",
+                            className="bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md",
                             children="Level 0",
                             id="player_level",
                         ),
                     ),
-                ]
+                ],
             ),
+            html.Div(children=[]),
         ],
     )
 

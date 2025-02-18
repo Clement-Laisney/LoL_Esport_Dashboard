@@ -41,7 +41,10 @@ def search_player(n_submit, n_click, input_string):
         tagline = input_string.split("#")[-1].strip(" ")
 
         data = api.get_account_by_riot_id(gameName=gamename, tagLine=tagline)
-        return data
+
+        summoner_data = api.get_summoner_by_puuid(puuid=data.get("puuid"))
+
+        return data | summoner_data
 
 
 def topNavBar():

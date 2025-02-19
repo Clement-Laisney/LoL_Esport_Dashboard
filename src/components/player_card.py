@@ -1,4 +1,4 @@
-from dash import html, callback, Input, Output
+from dash import html
 from utils import RiotAPI
 
 api = RiotAPI()
@@ -8,7 +8,7 @@ def playerCardboard(
     gamename="Username",
     tagline="#EUW",
     level="Level 0",
-    avatar_src="https://avatar.iran.liara.run/public/41",
+    avatar_src="https://ddragon.leagueoflegends.com/cdn/15.4.1/img/profileicon/685.png",
 ):
     return html.Div(
         className="shadow-lg rounded-lg overflow-hidden w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl",
@@ -30,7 +30,7 @@ def playerCardboard(
                     ),
                     html.P(
                         className="text-gray-600 text-center",
-                        children=tagline,
+                        children=f"#{tagline}",
                         id="player_tagline",
                     ),
                     html.Div(

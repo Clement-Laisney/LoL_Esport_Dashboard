@@ -1,5 +1,5 @@
 from dash import Dash, html, callback, Input, Output
-from components import topNavBar, playerCardboard
+from components import topNavBar, playerCardboard, rankCardboard
 
 # call the ability to add external scripts
 external_scripts = [
@@ -33,8 +33,9 @@ def display_playerCardboard(playerdata):
                     gamename=playerdata.get("gameName"),
                     tagline=playerdata.get("tagLine"),
                     level=f"Level {playerdata.get('summonerLevel')}",
-                    avatar_src=f"https://ddragon.leagueoflegends.com/cdn/15.2.1/img/profileicon/{playerdata.get('profileIconId')}.png",
-                )
+                    avatar_src=f"https://ddragon.leagueoflegends.com/cdn/15.4.1/img/profileicon/{playerdata.get('profileIconId')}.png",
+                ),
+                rankCardboard(playerdata.get("league")),
             ],
         )
     else:

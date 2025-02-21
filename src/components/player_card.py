@@ -7,11 +7,11 @@ api = RiotAPI()
 def playerCardboard(
     gamename="Username",
     tagline="#EUW",
-    level="Level 0",
+    level="Niveau 0",
     avatar_src="https://ddragon.leagueoflegends.com/cdn/15.4.1/img/profileicon/685.png",
 ):
     return html.Div(
-        className="shadow-lg rounded-lg overflow-hidden w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl",
+        className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl",
         children=[
             html.Div(
                 className="p-4",
@@ -36,7 +36,7 @@ def playerCardboard(
                     html.Div(
                         className="mt-4 flex justify-center",
                         children=html.Span(
-                            className="bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md",
+                            className="bg-[var(--light-secondary)] text-[var(--light-onsecondary)] text-sm font-semibold px-3 py-1 rounded-full shadow-md",
                             children=level,
                             id="player_level",
                         ),

@@ -4,7 +4,7 @@ from components import topNavBar, playerCardboard, rankCardboard
 # call the ability to add external scripts
 external_scripts = [
     # add the tailwind cdn url hosting the files with the utility classes
-    {"src": "https://cdn.tailwindcss.com"}
+    {"src": "https://cdn.tailwindcss.com"},
 ]
 
 app = Dash(
@@ -32,7 +32,7 @@ def display_playerCardboard(playerdata):
                 playerCardboard(
                     gamename=playerdata.get("gameName"),
                     tagline=playerdata.get("tagLine"),
-                    level=f"Level {playerdata.get('summonerLevel')}",
+                    level=f"Niveau {playerdata.get('summonerLevel')}",
                     avatar_src=f"https://ddragon.leagueoflegends.com/cdn/15.4.1/img/profileicon/{playerdata.get('profileIconId')}.png",
                 ),
                 rankCardboard(playerdata.get("league")),

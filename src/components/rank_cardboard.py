@@ -12,7 +12,7 @@ def rankTab(
 ):
     return dcc.Tab(
         label=tabname,
-        className="text-gray-800 font-semibold",
+        className="text-[var(--light-onbg)] font-semibold",
         children=[
             html.Div(
                 className="p-4 flex flex-col items-center",
@@ -24,11 +24,7 @@ def rankTab(
                     ),
                     html.H3(
                         className="mt-2 text-xl font-bold",
-                        children=tier,
-                    ),
-                    html.P(
-                        className="text-gray-700",
-                        children=rank,
+                        children=f"{tier} {rank}",
                     ),
                     html.P(
                         className="text-gray-600",
@@ -36,7 +32,15 @@ def rankTab(
                     ),
                     html.P(
                         className="text-gray-600",
-                        children=[f"Victoires: {wins}, Défaites: {losses}"],
+                        children=[
+                            f"Taux de Victoire: {round(wins/(wins+losses)*100)}%",
+                        ],
+                    ),
+                    html.P(
+                        className="text-gray-600",
+                        children=[
+                            f"{wins}V {losses}D",
+                        ],
                     ),
                 ],
             )
@@ -52,9 +56,9 @@ def rankCardboard(leaguedata: list[dict]):
                 className="w-full",
                 children=[
                     rankTab(
-                        tabname="Solo Queue"
+                        tabname="Classé Solo/Duo"
                         if data.get("queueType") == "RANKED_SOLO_5x5"
-                        else "Flex Queue",
+                        else "Classé Flexible",
                         tierimg=f"assets/images/tier_emblems/{data.get("tier")}.png",
                         tier=data.get("tier"),
                         rank=data.get("rank"),

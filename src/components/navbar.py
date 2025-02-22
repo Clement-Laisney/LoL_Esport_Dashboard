@@ -31,7 +31,7 @@ def topNavBar():
         className="bg-[var(--light-primary)] text-[var(--light-onprimary)] sticky top-0 w-full shadow-lg z-10",
         children=[
             html.Div(
-                className="max-w-md mx-auto flex items-center justify-between px-4 py-2 gap-4",
+                className="max-w-lg mx-auto flex items-center justify-between px-4 py-2 gap-4",
                 children=[
                     html.A(
                         className="flex items-center",
@@ -42,7 +42,7 @@ def topNavBar():
                                 alt="Pentalytics logo",
                             ),
                             html.Span(
-                                className="ml-3 text-xl font-bold",
+                                className="ml-3 text-xl font-bold hidden md:inline",
                                 children="Pentalytics",
                             ),
                         ],

@@ -16,12 +16,43 @@ def searchBar():
                 debounce=True,
             ),
             html.Button(
-                className="ml-2 bg-[var(--light-secondary)] hover:bg-[var(--light-variant-secondary)] text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none",
+                className="ml-2 bg-[var(--light-secondary)] hover:bg-[var(--light-variant-secondary)] text-[var(--light-onsecondary)] px-3 py-2 rounded-md text-sm font-medium focus:outline-none",
                 id="top_navbar_search_button",
                 children="Search",
             ),
             # Stores Account information
             dcc.Store(id="account_information_store"),
+        ],
+    )
+
+
+def topNavBar():
+    return html.Nav(
+        className="bg-[var(--light-primary)] text-[var(--light-onprimary)] sticky top-0 w-full shadow-lg z-10",
+        children=[
+            html.Div(
+                className="max-w-md mx-auto flex items-center justify-between px-4 py-2 gap-4",
+                children=[
+                    html.A(
+                        className="flex items-center",
+                        children=[
+                            html.Img(
+                                className="h-8 w-8",
+                                src="assets/logos/Penta_icon.png",
+                                alt="Pentalytics logo",
+                            ),
+                            html.Span(
+                                className="ml-3 text-xl font-bold",
+                                children="Pentalytics",
+                            ),
+                        ],
+                    ),
+                    html.Div(
+                        className="flex items-center justify-center flex-grow",
+                        children=[searchBar()],
+                    ),
+                ],
+            )
         ],
     )
 
@@ -49,34 +80,3 @@ def search_player(n_submit, n_click, input_string):
         data = {**player_data, **summoner_data, "league": league_data}
 
         return data
-
-
-def topNavBar():
-    return html.Nav(
-        className="bg-[var(--light-primary)] text-[var(--light-onprimary)] sticky top-0 z-50 shadow-lg",
-        children=[
-            html.Div(
-                className="container max-w-xl mx-auto flex items-center justify-between px-4 py-2 gap-4",
-                children=[
-                    html.A(
-                        className="flex items-center",
-                        children=[
-                            html.Img(
-                                className="h-8 w-8",
-                                src="assets/logos/Penta_icon.png",
-                                alt="Pentalytics logo",
-                            ),
-                            html.Span(
-                                className="ml-3 text-xl font-bold",
-                                children="Pentalytics",
-                            ),
-                        ],
-                    ),
-                    html.Div(
-                        className="flex items-center justify-center flex-grow",
-                        children=[searchBar()],
-                    ),
-                ],
-            )
-        ],
-    )

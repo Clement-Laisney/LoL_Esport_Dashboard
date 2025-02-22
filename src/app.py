@@ -13,10 +13,11 @@ app = Dash(
 )
 
 app.layout = html.Div(
-    className="min-h-screen bg-[var(--light-bg)] text-[var(--light-onbg)] dark:bg-[var(--dark-bg)] dark:text-[var(--dark-onbg)]",
+    className="bg-[var(--light-bg)] text-[var(--light-text-primary)] dark:bg-[var(--dark-bg)] dark:text-[var(--dark-text-primary)] flex flex-col items-center min-h-screen",
     children=[
         topNavBar(),
         html.Div(
+            className="w-full",
             id="main",
         ),
     ],
@@ -27,7 +28,7 @@ app.layout = html.Div(
 def display_playerCardboard(playerdata):
     if playerdata:
         return html.Div(
-            className="container mx-auto p-6 flex justify-center",
+            className="container md:flex justify-center w-full mx-auto p-6 space-y-6 md:space-x-10 md:space-y-0",
             children=[
                 playerCardboard(
                     gamename=playerdata.get("gameName"),
@@ -40,14 +41,14 @@ def display_playerCardboard(playerdata):
         )
     else:
         return html.Div(
-            className="flex flex-col items-center justify-center h-screen ",
+            className="flex flex-col justify-center h-screen ",
             children=[
                 html.H1(
                     className="text-4xl font-bold mb-4 text-center",
                     children=["Bienvenue sur notre Dashboard !"],
                 ),
                 html.P(
-                    className="text-lg text-gray-600 dark:text-gray-300 mb-6 text-center",
+                    className="text-lg text-[var(--light-text-secondary)] dark:text-[var(--dark-text-secondary)] mb-6 text-center",
                     children=[
                         "Pour commencer, veuillez effectuer une recherche "
                         "en utilisant la barre de recherche ci-dessus."

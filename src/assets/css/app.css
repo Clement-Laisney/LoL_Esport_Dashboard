@@ -1,65 +1,72 @@
 :root {
-    --light-primary: #2f3c4d;
-    --light-variant-primary: #646566;
-    --light-secondary: #2563eb;
-    --light-variant-secondary: #1d4ed8;
-    --light-bg: #f3f4f6;
+    --light-primary: #4E35F2;
+    --light-variant-primary: #2E3094;
+    --light-secondary: #1D8FF2;
+    --light-variant-secondary: #1462A6;
+    --light-bg: #F2F2F2;
     --light-surface: #ffffff;
     --light-error: #b00020;
-    --light-onprimary: #f3f4f6;
-    --light-onsecondary: #f3f4f6;
-    --light-onbg: #000000;
-    --light-onsurface: #000000;
-    --light-onerror: #f3f4f6;
+    --light-text-primary: #595959;
+    --light-text-secondary: #A6A6A6;
+    --light-onprimary: #F2F2F2;
+    --light-onsecondary: #F2F2F2;
+    --light-onbg: var(--light-text-primary);
+    --light-onsurface: var(--light-text-primary);
+    --light-onerror: #F2F2F2F2;
 
     --dark-primary: #2f3c4d;
     --dark-variant-primary: #646566;
     --dark-secondary: #2563eb;
     --dark-variant-secondary: #1d4ed8;
-    --dark-bg: #2e2e2e;
-    --dark-surface: #5b5d61;
+    --dark-bg: #0D0D0D;
+    --dark-surface: #262626;
     --dark-error: #b00020;
-    --dark-onprimary: #f3f4f6;
-    --dark-onsecondary: #f3f4f6;
-    --dark-onbg: #f3f4f6;
-    --dark-onsurface: #f3f4f6;
-    --dark-onerror: #f3f4f6;
+    --dark-text-primary: #F2F2F2;
+    --dark-text-secondary: #8C8C8C;
+    --dark-onprimary: #F2F2F2;
+    --dark-onsecondary: #F2F2F2;
+    --dark-onbg: var(--dark-text-primary);
+    --dark-onsurface: var(--dark-text-primary);
+    --dark-onerror: #F2F2F2F2;
 }
 
 .custom-tab{
-    background-color: var(--light-surface) !important;
+    color: var(--light-text-primary) !important;
+    background-color: #bfbfbf !important;
     border-top: 0px !important;
     border-left: 0px !important;
-    border-bottom: 2px solid lightgrey !important;
+    border-bottom: 0px !important;
     border-right: 0px !important;
     border-radius: 0px !important;
 
 }
 
 .selected-custom-tab{
+    color: var(--light-text-primary) !important;
     background-color: var(--light-surface) !important;
-    border-left: 2px solid lightgrey !important;
-    border-right: 2px solid lightgrey !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
     border-bottom: transparent !important;
     border-top: 3px solid var(--light-secondary) !important;
 }
 
 @media (prefers-color-scheme: dark){
     .custom-tab{
-        background-color: var(--dark-surface) !important;
+        color: var(--dark-text-primary) !important;
+        background-color: #515358 !important;
         border-top: 0px !important;
         border-left: 0px !important;
-        border-bottom: 2px solid grey !important;
+        border-bottom: 0px !important;
         border-right: 0px !important;
         border-radius: 0px !important;
 
     }
 
     .selected-custom-tab{
-        color : var(--dark-onsurface) !important;
+        color : var(--dark-text-primary) !important;
         background-color: var(--dark-surface) !important;
-        border-left: 2px solid grey !important;
-        border-right: 2px solid grey !important;
+        border-left: 0px !important;
+        border-right: 0px !important;
         border-bottom: transparent !important;
         border-top: 3px solid var(--dark-secondary) !important;
     }

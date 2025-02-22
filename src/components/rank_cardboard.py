@@ -28,17 +28,17 @@ def rankTab(
                         children=f"{tier} {rank}",
                     ),
                     html.P(
-                        className="text-gray-600 dark:text-gray-300",
+                        className="text-[var(--light-text-secondary)] dark:text-[var(--dark-text-secondary)]",
                         children=f"{LP} LP",
                     ),
                     html.P(
-                        className="text-gray-600 dark:text-gray-300",
+                        className="text-[var(--light-text-secondary)] dark:text-[var(--dark-text-secondary)]",
                         children=[
                             f"Taux de Victoire: {round(wins/(wins+losses)*100)}%",
                         ],
                     ),
                     html.P(
-                        className="text-gray-600 dark:text-gray-300",
+                        className="text-[var(--light-text-secondary)] dark:text-[var(--dark-text-secondary)]",
                         children=[
                             f"{wins}V {losses}D",
                         ],
@@ -51,10 +51,11 @@ def rankTab(
 
 def rankCardboard(leaguedata: list[dict]):
     return html.Div(
-        className="bg-[var(--light-surface)] text-[var(--light-onsurface)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-onsurface)] shadow-lg rounded-lg overflow-hidden w-full max-w-md mx-auto",
+        className="bg-[var(--light-surface)] text-[var(--light-text-primary)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-text-primary)] shadow-lg rounded-lg overflow-hidden w-full min-w-[22rem] md:max-w-xl",
         children=[
             dcc.Tabs(
                 className="w-full",
+                mobile_breakpoint=0,
                 children=[
                     rankTab(
                         tabname="Classé Solo/Duo"

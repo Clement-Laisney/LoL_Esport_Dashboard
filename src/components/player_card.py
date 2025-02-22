@@ -11,13 +11,13 @@ def playerCardboard(
     avatar_src="https://ddragon.leagueoflegends.com/cdn/15.4.1/img/profileicon/685.png",
 ):
     return html.Div(
-        className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl",
+        className="bg-[var(--light-surface)] text-[var(--light-onsurface)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-onsurface)] shadow-lg rounded-lg overflow-hidden w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl",
         children=[
             html.Div(
                 className="p-4",
                 children=[  # Avatar
                     html.Img(
-                        className="w-32 h-32 mx-auto rounded-full border-4 border-white",
+                        className="w-32 h-32 mx-auto rounded-full",
                         alt="Player Avatar",
                         src=avatar_src,
                         id="player_avatar",
@@ -29,7 +29,7 @@ def playerCardboard(
                         id="player_gamename",
                     ),
                     html.P(
-                        className="text-gray-600 text-center",
+                        className="text-gray-600 dark:text-gray-300 text-center",
                         children=f"#{tagline}",
                         id="player_tagline",
                     ),

@@ -1,10 +1,10 @@
 :root {
-    --light-primary: #1f2937;
-    --light-variant-primary: #374151;
+    --light-primary: #2f3c4d;
+    --light-variant-primary: #646566;
     --light-secondary: #2563eb;
     --light-variant-secondary: #1d4ed8;
     --light-bg: #f3f4f6;
-    --light-surface: #f3f4f6;
+    --light-surface: #ffffff;
     --light-error: #b00020;
     --light-onprimary: #f3f4f6;
     --light-onsecondary: #f3f4f6;
@@ -12,16 +12,55 @@
     --light-onsurface: #000000;
     --light-onerror: #f3f4f6;
 
-    --dark-primary: #1f2937;
-    --dark-variant-primary: #374151;
+    --dark-primary: #2f3c4d;
+    --dark-variant-primary: #646566;
     --dark-secondary: #2563eb;
     --dark-variant-secondary: #1d4ed8;
-    /* --dark-bg: #474b53;
-    --dark-surface: #f3f4f6;
+    --dark-bg: #2e2e2e;
+    --dark-surface: #5b5d61;
     --dark-error: #b00020;
     --dark-onprimary: #f3f4f6;
     --dark-onsecondary: #f3f4f6;
-    --dark-onbg: #000000;
-    --dark-onsurface: #000000;
-    --dark-onerror: #f3f4f6; */
+    --dark-onbg: #f3f4f6;
+    --dark-onsurface: #f3f4f6;
+    --dark-onerror: #f3f4f6;
+}
+
+.custom-tab{
+    background-color: var(--light-surface) !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-bottom: 2px solid lightgrey !important;
+    border-right: 0px !important;
+    border-radius: 0px !important;
+
+}
+
+.selected-custom-tab{
+    background-color: var(--light-surface) !important;
+    border-left: 2px solid lightgrey !important;
+    border-right: 2px solid lightgrey !important;
+    border-bottom: transparent !important;
+    border-top: 3px solid var(--light-secondary) !important;
+}
+
+@media (prefers-color-scheme: dark){
+    .custom-tab{
+        background-color: var(--dark-surface) !important;
+        border-top: 0px !important;
+        border-left: 0px !important;
+        border-bottom: 2px solid grey !important;
+        border-right: 0px !important;
+        border-radius: 0px !important;
+
+    }
+
+    .selected-custom-tab{
+        color : var(--dark-onsurface) !important;
+        background-color: var(--dark-surface) !important;
+        border-left: 2px solid grey !important;
+        border-right: 2px solid grey !important;
+        border-bottom: transparent !important;
+        border-top: 3px solid var(--dark-secondary) !important;
+    }
 }

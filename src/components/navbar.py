@@ -12,7 +12,7 @@ def searchBar():
                 type="text",
                 placeholder="Username #EUW",
                 id="top_navbar_search_bar",
-                className="w-full px-4 py-2 bg-[var(--light-variant-primary)] text-white text-sm rounded-md focus:outline-none focus:ring focus:ring-[var(--light-secondary)]",
+                className="w-full px-4 py-2 bg-[var(--light-variant-primary)] text-[var(--light-onprimary)] placeholder:text-gray-300 text-sm rounded-md focus:outline-none focus:ring focus:ring-[var(--light-secondary)]",
                 debounce=True,
             ),
             html.Button(
@@ -53,7 +53,7 @@ def search_player(n_submit, n_click, input_string):
 
 def topNavBar():
     return html.Nav(
-        className="bg-[var(--light-primary)] text-white sticky top-0 z-50 shadow-lg",
+        className="bg-[var(--light-primary)] text-[var(--light-onprimary)] sticky top-0 z-50 shadow-lg",
         children=[
             html.Div(
                 className="container max-w-xl mx-auto flex items-center justify-between px-4 py-2 gap-4",
@@ -67,7 +67,7 @@ def topNavBar():
                                 alt="Pentalytics logo",
                             ),
                             html.Span(
-                                className="ml-3 text-xl font-bold text-[var(--light-onprimary)]",
+                                className="ml-3 text-xl font-bold",
                                 children="Pentalytics",
                             ),
                         ],

@@ -12,13 +12,14 @@ def rankTab(
 ):
     return dcc.Tab(
         label=tabname,
-        className="text-[var(--light-onbg)] font-semibold",
+        className="font-semibold custom-tab",
+        selected_className="font-semibold selected-custom-tab",
         children=[
             html.Div(
                 className="p-4 flex flex-col items-center",
                 children=[
                     html.Img(
-                        className="w-24 h-24 rounded-full border-4 border-white",
+                        className="w-24 h-24 rounded-full",
                         src=tierimg,
                         alt="Division",
                     ),
@@ -27,17 +28,17 @@ def rankTab(
                         children=f"{tier} {rank}",
                     ),
                     html.P(
-                        className="text-gray-600",
+                        className="text-gray-600 dark:text-gray-300",
                         children=f"{LP} LP",
                     ),
                     html.P(
-                        className="text-gray-600",
+                        className="text-gray-600 dark:text-gray-300",
                         children=[
                             f"Taux de Victoire: {round(wins/(wins+losses)*100)}%",
                         ],
                     ),
                     html.P(
-                        className="text-gray-600",
+                        className="text-gray-600 dark:text-gray-300",
                         children=[
                             f"{wins}V {losses}D",
                         ],
@@ -50,7 +51,7 @@ def rankTab(
 
 def rankCardboard(leaguedata: list[dict]):
     return html.Div(
-        className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-md mx-auto",
+        className="bg-[var(--light-surface)] text-[var(--light-onsurface)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-onsurface)] shadow-lg rounded-lg overflow-hidden w-full max-w-md mx-auto",
         children=[
             dcc.Tabs(
                 className="w-full",

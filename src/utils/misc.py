@@ -7,7 +7,7 @@ def validate_gamename_and_tagline(input_string):
 
     Rules:
     - Game names: 3-16 Unicode characters, no `#`.
-    - Separator: `#` between game name and tagline.
+    - Separator: `-` between game name and tagline.
     - Tagline: 3-5 alphanumeric characters (supports Unicode letters).
 
     :param input_string: str, input string to validate

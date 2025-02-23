@@ -1,7 +1,4 @@
 from dash import html
-from utils import RiotAPI
-
-api = RiotAPI()
 
 
 def playerCardboard(

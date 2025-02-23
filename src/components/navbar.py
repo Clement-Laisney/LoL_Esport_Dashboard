@@ -1,7 +1,5 @@
 from dash import html, dcc, Input, Output, State, callback
-from utils import validate_gamename_and_tagline, RiotAPI
-
-api = RiotAPI()
+from utils import validate_gamename_and_tagline
 
 
 def searchBar():
@@ -20,8 +18,6 @@ def searchBar():
                 id="top_navbar_search_button",
                 children="Search",
             ),
-            # Stores Account information
-            dcc.Store(id="account_information_store"),
         ],
     )
 
@@ -33,12 +29,13 @@ def topNavBar():
             html.Div(
                 className="max-w-lg mx-auto flex items-center justify-between px-4 py-2 gap-4",
                 children=[
-                    html.A(
+                    dcc.Link(
+                        href="/",
                         className="flex items-center",
                         children=[
                             html.Img(
                                 className="h-8 w-8",
-                                src="assets/logos/Penta_icon.png",
+                                src="/assets/logos/Penta_icon.png",
                                 alt="Pentalytics logo",
                             ),
                             html.Span(
@@ -51,6 +48,7 @@ def topNavBar():
                         className="flex items-center justify-center flex-grow",
                         children=[searchBar()],
                     ),
+                    dcc.Location(id="player_location"),
                 ],
             )
         ],
@@ -58,25 +56,21 @@ def topNavBar():
 
 
 @callback(
-    Output("account_information_store", "data"),
+    Output("player_location", "href"),
     Input("top_navbar_search_bar", "n_submit"),
     Input("top_navbar_search_button", "n_clicks"),
     State("top_navbar_search_bar", "value"),
+    prevent_initial_call=True,
 )
 def search_player(n_submit, n_click, input_string):
+    print(input_string)
+    print(n_click, n_submit)
     if (n_click or n_submit) and validate_gamename_and_tagline(
         input_string=input_string
     ):
         # split gamename and tagline
         gamename = input_string.split("#")[0].strip(" ")
         tagline = input_string.split("#")[-1].strip(" ")
+        print(gamename, tagline)
 
-        player_data = api.get_account_by_riot_id(gameName=gamename, tagLine=tagline)
-
-        summoner_data = api.get_summoner_by_puuid(puuid=player_data.get("puuid"))
-
-        league_data = api.get_league_by_summoner_id(summonerId=summoner_data.get("id"))
-
-        data = {**player_data, **summoner_data, "league": league_data}
-
-        return data
+        return f"/player/{gamename}-{tagline}"

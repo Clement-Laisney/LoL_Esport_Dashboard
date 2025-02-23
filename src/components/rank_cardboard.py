@@ -34,13 +34,13 @@ def rankTab(
                     html.P(
                         className="text-[var(--light-text-secondary)] dark:text-[var(--dark-text-secondary)]",
                         children=[
-                            f"Taux de Victoire: {round(wins/(wins+losses)*100)}%",
+                            f"Victory rate: {round(wins/(wins+losses)*100)}%",
                         ],
                     ),
                     html.P(
                         className="text-[var(--light-text-secondary)] dark:text-[var(--dark-text-secondary)]",
                         children=[
-                            f"{wins}V {losses}D",
+                            f"{wins}V {losses}L",
                         ],
                     ),
                 ],
@@ -58,10 +58,10 @@ def rankCardboard(leaguedata: list[dict]):
                 mobile_breakpoint=0,
                 children=[
                     rankTab(
-                        tabname="Classé Solo/Duo"
+                        tabname="Ranked Solo/Duo"
                         if data.get("queueType") == "RANKED_SOLO_5x5"
-                        else "Classé Flexible",
-                        tierimg=f"assets/images/tier_emblems/{data.get("tier")}.png",
+                        else "Ranked Flex",
+                        tierimg=f"/assets/images/tier_emblems/{data.get("tier")}.png",
                         tier=data.get("tier"),
                         rank=data.get("rank"),
                         LP=data.get("leaguePoints"),

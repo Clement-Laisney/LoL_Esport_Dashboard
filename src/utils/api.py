@@ -4,7 +4,8 @@ import requests
 
 load_dotenv()
 
-class RiotAPI():
+
+class RiotAPI:
     def __init__(self, api_token=os.environ["RIOT_API_KEY"]) -> None:
         self.__api_token = api_token
         self.__headers = {"X-Riot-Token": api_token}
@@ -25,7 +26,10 @@ class RiotAPI():
         Returns:
             dict: return a dictionnary with puuid, gameName and tagLine
         """
-        r = requests.get(url=f"https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}", headers=self.__headers)
+        r = requests.get(
+            url=f"https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{gameName}/{tagLine}",
+            headers=self.__headers,
+        )
         return r.json()
 
     def get_summoner_by_puuid(self, puuid: str) -> dict:
@@ -43,7 +47,10 @@ class RiotAPI():
                     puuid (str): Encrypted PUUID. Exact length of 78 characters.
                     summonerLevel (float): Summoner level associated with the summoner.
         """
-        r = requests.get(url=f"https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}", headers=self.__headers)
+        r = requests.get(
+            url=f"https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}",
+            headers=self.__headers,
+        )
         return r.json()
 
     def get_league_by_summoner_id(self, summonerId: str) -> list[dict]:
@@ -67,16 +74,22 @@ class RiotAPI():
                         freshBlood (bool)
                         inactive (bool)
         """
-        r = requests.get(url=f"https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerId}", headers=self.__headers)
+        r = requests.get(
+            url=f"https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerId}",
+            headers=self.__headers,
+        )
         return r.json()
 
-    def get_match_ids_by_puuid(self, puuid: str,
-                               startTime: float = None,
-                               endTime: float = None,
-                               queue : int = None,
-                               matchType : str = None,
-                               start : int = 0,
-                               count: int = 20) -> list[str]:
+    def get_match_ids_by_puuid(
+        self,
+        puuid: str,
+        startTime: float = None,
+        endTime: float = None,
+        queue: int = None,
+        matchType: str = None,
+        start: int = 0,
+        count: int = 20,
+    ) -> list[str]:
         """Retrieve the list of match ids by puuid
 
         Args:
@@ -91,16 +104,20 @@ class RiotAPI():
         Returns:
             list[str]: Return a list of match ids
         """
-        payload = {"startTime": startTime,
-                   "endTime": endTime,
-                   "queue": queue,
-                   "type": matchType,
-                   "start": start,
-                   "count": count}
+        payload = {
+            "startTime": startTime,
+            "endTime": endTime,
+            "queue": queue,
+            "type": matchType,
+            "start": start,
+            "count": count,
+        }
 
-        r = requests.get(url=f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids",
-                         headers=self.__headers,
-                         params=payload)
+        r = requests.get(
+            url=f"https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids",
+            headers=self.__headers,
+            params=payload,
+        )
         return r.json()
 
     def get_match_by_match_id(self, matchId: str) -> dict:
@@ -112,7 +129,10 @@ class RiotAPI():
         Returns:
             dict: Return a json. To understand structure visit: https://developer.riotgames.com/apis#match-v5/GET_getMatch
         """
-        r = requests.get(url=f"https://europe.api.riotgames.com/lol/match/v5/matches/{matchId}", headers=self.__headers)
+        r = requests.get(
+            url=f"https://europe.api.riotgames.com/lol/match/v5/matches/{matchId}",
+            headers=self.__headers,
+        )
         return r.json()
 
     def get_match_timeline_by_match_id(self, matchId: str) -> dict:
@@ -124,5 +144,22 @@ class RiotAPI():
         Returns:
             dict: Return a json. To understand structure visit: https://developer.riotgames.com/apis#match-v5/GET_getTimeline
         """
-        r = requests.get(url=f"https://europe.api.riotgames.com/lol/match/v5/matches/{matchId}/timeline")
+        r = requests.get(
+            url=f"https://europe.api.riotgames.com/lol/match/v5/matches/{matchId}/timeline"
+        )
         return r.json()
+
+
+api = RiotAPI()
+
+
+def retrieve_player_data(gamename: str, tagline: str) -> dict:
+    player_data = api.get_account_by_riot_id(gameName=gamename, tagLine=tagline)
+
+    summoner_data = api.get_summoner_by_puuid(puuid=player_data.get("puuid"))
+
+    league_data = api.get_league_by_summoner_id(summonerId=summoner_data.get("id"))
+
+    data = {**player_data, **summoner_data, "league": league_data}
+
+    return data

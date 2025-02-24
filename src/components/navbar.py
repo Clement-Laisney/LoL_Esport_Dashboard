@@ -1,5 +1,7 @@
-from dash import html, dcc, Input, Output, State, callback
-from utils import validate_gamename_and_tagline
+from dash import html, dcc, Input, Output, State, callback, callback_context
+from utils import validate_gamename_and_tagline, RiotAPI
+
+api = RiotAPI()
 
 
 def searchBar():
@@ -11,7 +13,6 @@ def searchBar():
                 placeholder="Username #EUW",
                 id="top_navbar_search_bar",
                 className="w-full px-4 py-2 bg-[var(--light-variant-primary)] text-[var(--light-onprimary)] placeholder:text-gray-300 text-sm rounded-md focus:outline-none focus:ring focus:ring-[var(--light-secondary)]",
-                debounce=True,
             ),
             html.Button(
                 className="ml-2 bg-[var(--light-secondary)] hover:bg-[var(--light-variant-secondary)] text-[var(--light-onsecondary)] px-3 py-2 rounded-md text-sm font-medium focus:outline-none",
@@ -22,7 +23,7 @@ def searchBar():
     )
 
 
-def topNavBar():
+def topNavbar():
     return html.Nav(
         className="bg-[var(--light-primary)] text-[var(--light-onprimary)] sticky top-0 w-full shadow-lg z-10",
         children=[
@@ -48,7 +49,7 @@ def topNavBar():
                         className="flex items-center justify-center flex-grow",
                         children=[searchBar()],
                     ),
-                    dcc.Location(id="player_location"),
+                    dcc.Location(id="player_location", refresh="callback-nav"),
                 ],
             )
         ],
@@ -63,14 +64,11 @@ def topNavBar():
     prevent_initial_call=True,
 )
 def search_player(n_submit, n_click, input_string):
-    print(input_string)
-    print(n_click, n_submit)
     if (n_click or n_submit) and validate_gamename_and_tagline(
         input_string=input_string
     ):
         # split gamename and tagline
         gamename = input_string.split("#")[0].strip(" ")
         tagline = input_string.split("#")[-1].strip(" ")
-        print(gamename, tagline)
 
         return f"/player/{gamename}-{tagline}"

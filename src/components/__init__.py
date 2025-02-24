@@ -1,5 +1,6 @@
-from .navbar import topNavBar
-from .player_card import playerCardboard
-from .rank_cardboard import rankCardboard
+from .navbar import topNavbar
+from .playercard import playerCardboard
+from .rankcardboard import rankCardboard
+from .gamehistory import matchHistory
 
-__all__ = ["topNavBar", "playerCardboard", "rankCardboard"]
+__all__ = ["topNavbar", "playerCardboard", "rankCardboard", "matchHistory"]

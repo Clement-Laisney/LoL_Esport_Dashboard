@@ -8,7 +8,7 @@ def playerCardboard(
     avatar_src="https://ddragon.leagueoflegends.com/cdn/15.4.1/img/profileicon/685.png",
 ):
     return html.Div(
-        className="bg-[var(--light-surface)] text-[var(--light-text-primary)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-text-primary)] shadow-lg rounded-lg overflow-hidden w-full min-w-[22rem] md:max-w-xl",
+        className="bg-[var(--light-surface)] text-[var(--light-text-primary)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-text-primary)] mx-auto shadow-lg rounded-lg overflow-hidden w-full min-w-[22rem]",
         children=[
             html.Div(
                 className="p-4",

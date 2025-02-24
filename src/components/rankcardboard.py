@@ -51,7 +51,7 @@ def rankTab(
 
 def rankCardboard(leaguedata: list[dict]):
     return html.Div(
-        className="bg-[var(--light-surface)] text-[var(--light-text-primary)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-text-primary)] shadow-lg rounded-lg overflow-hidden w-full min-w-[22rem] md:max-w-xl",
+        className="bg-[var(--light-surface)] text-[var(--light-text-primary)] dark:bg-[var(--dark-surface)] dark:text-[var(--dark-text-primary)] mx-auto shadow-lg rounded-lg overflow-hidden w-full min-w-[22rem]",
         children=[
             dcc.Tabs(
                 className="w-full",

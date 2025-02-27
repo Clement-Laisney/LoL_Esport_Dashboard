@@ -20,7 +20,6 @@ app.layout = html.Div(
                 page_container,
             ],
         ),
-        dcc.Store(id="account_information_store"),
     ],
 )
 

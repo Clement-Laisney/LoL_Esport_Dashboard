@@ -25,6 +25,17 @@ def get_game_history_info(matchIds: list, puuid: str) -> list[dict]:
 
         championName = playerGameData.get("championName")
         isWin = playerGameData.get("win")
+        level = playerGameData.get("champLevel")
+        kills = playerGameData.get("kills")
+        deaths = playerGameData.get("deaths")
+        assists = playerGameData.get("assists")
+        item0 = playerGameData.get("item0")
+        item1 = playerGameData.get("item1")
+        item2 = playerGameData.get("item2")
+        item3 = playerGameData.get("item3")
+        item4 = playerGameData.get("item4")
+        item5 = playerGameData.get("item5")
+        item6 = playerGameData.get("item6")
 
         history_data_list.append(
             {
@@ -33,6 +44,17 @@ def get_game_history_info(matchIds: list, puuid: str) -> list[dict]:
                 "timestamp": timestamp,
                 "queueId": queueId,
                 "championName": championName,
+                "level": level,
+                "kills": kills,
+                "deaths": deaths,
+                "assists": assists,
+                "item0": item0,
+                "item1": item1,
+                "item2": item2,
+                "item3": item3,
+                "item4": item4,
+                "item5": item5,
+                "item6": item6,
             }
         )
     return history_data_list
@@ -63,7 +85,6 @@ def convert_timestamp_to_occurence_str(timestamp: int) -> str:
 
 
 def convert_queueid_to_gamemode(queueId: int) -> str:
-    print(queueId)
     if queueId == 0:
         gamemode = "Custom"
     elif queueId == 400:

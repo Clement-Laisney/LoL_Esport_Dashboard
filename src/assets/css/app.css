@@ -28,6 +28,12 @@
     --dark-onbg: var(--dark-text-primary);
     --dark-onsurface: var(--dark-text-primary);
     --dark-onerror: #F2F2F2F2;
+
+    --lose-bg-color: #fecaca;
+    --lose-text-color: #dc2626;
+    --win-bg-color: #bbf7d0;
+    --win-text-color: #16a34a;
+    --on-history: #6b7280;
 }
 
 .custom-tab{

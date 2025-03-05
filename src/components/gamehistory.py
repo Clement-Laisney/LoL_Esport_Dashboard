@@ -1,4 +1,5 @@
 from dash import html
+from .itemhistory import itemHistory
 from utils import (
     convert_duration_to_min_sec,
     convert_timestamp_to_occurence_str,
@@ -417,47 +418,114 @@ def gameHistory(
     timestamp: int,
     queueId: int,
     championName: str,
+    level: int,
+    kills: int,
+    deaths: int,
+    assists: int,
+    item0: int,
+    item1: int,
+    item2: int,
+    item3: int,
+    item4: int,
+    item5: int,
+    item6: int,
 ):
     minutes, seconds = convert_duration_to_min_sec(duration=duration)
     occurence = convert_timestamp_to_occurence_str(timestamp=timestamp)
     gamemode = convert_queueid_to_gamemode(queueId=queueId)
 
     return html.Div(
-        className=f"p-4 border rounded-lg shadow-md {'bg-green-200' if isWin else 'bg-red-200'} w-full mx-auto md:col-span-2",
+        className=f"p-4 border rounded-lg shadow-md {'bg-[var(--win-bg-color)]' if isWin else 'bg-[var(--lose-bg-color)]'} w-full mx-auto md:col-span-2",
         children=[
             html.Div(
                 className="flex items-center justify-between",
                 children=[
                     html.Div(
-                        className="text-black min-w-[130px]",
+                        className="text-[var(--on-history)] min-w-[130px]",
                         children=[
                             html.Div(
-                                className=f"{'text-green-600' if isWin else 'text-red-600'}",
+                                className=f"{'text-[var(--win-text-color)]' if isWin else 'text-[var(--lose-text-color)]'}",
                                 children=gamemode,
                             ),
-                            html.Div(className="text-gray-500", children=occurence),
+                            html.Div(children=occurence),
                             html.Hr(
-                                className="h-px w-12 my-2 bg-gray-300 border-0 dark:bg-gray-300"
+                                className="h-px w-12 my-2 bg-[var(--on-history)] border-0 dark:bg-[var(--on-history)]"
                             ),
                             html.Div(
-                                className="text-gray-500",
                                 children=f"{'Victory' if isWin else "Lose"}",
                             ),
                             html.Div(
-                                className="text-gray-500",
                                 children=f"{minutes} min {seconds} s",
                             ),
                         ],
                     ),
-                    html.Img(
-                        className="w-16 h-16 rounded-full mx-4",
-                        alt="avatar du champion",
-                        src=f"/assets/images/champions/{championName}.jpg",
+                    html.Div(
+                        className="flex flex-col gap-y-2",
+                        children=[
+                            html.Div(
+                                className="flex",
+                                children=[
+                                    html.Div(
+                                        className="relative inline-block",
+                                        children=[
+                                            html.Img(
+                                                className="w-16 h-16 rounded-full mx-4",
+                                                alt="avatar du champion",
+                                                src=f"/assets/images/champions/{championName}.jpg",
+                                            ),
+                                            html.Span(
+                                                className="absolute bottom-0 right-3 bg-black text-white text-xs rounded-full px-1 py-0.5",
+                                                children=f"{level}",
+                                            ),
+                                        ],
+                                    ),
+                                    html.Div(
+                                        className="text-[var(--on-history)]",
+                                        children=[
+                                            html.Div(
+                                                className="flex gap-x-2 font-semibold text-black",
+                                                children=[
+                                                    html.Div(f"{kills}"),
+                                                    html.Div("/"),
+                                                    html.Div(
+                                                        className="text-[var(--lose-text-color)]",
+                                                        children=f"{deaths}",
+                                                    ),
+                                                    html.Div("/"),
+                                                    html.Div(f"{assists}"),
+                                                ],
+                                            ),
+                                            html.P(
+                                                children=f"{round((kills+assists)/deaths,2)} KDA"
+                                            ),
+                                        ],
+                                    ),
+                                ],
+                            ),
+                            html.Div(
+                                className="flex gap-1",
+                                children=itemHistory(
+                                    itemList=[
+                                        item0,
+                                        item1,
+                                        item2,
+                                        item3,
+                                        item4,
+                                        item5,
+                                        item6,
+                                    ],
+                                    isWin=isWin,
+                                ),
+                            ),
+                        ],
                     ),
                     html.Div(
                         className="flex-grow text-center",
                         children=[
-                            html.Div(className="font-bold", children=gamemode),
+                            html.Div(
+                                className="font-bold",
+                                children=f"{kills} / {deaths} / {assists}",
+                            ),
                         ],
                     ),
                 ],

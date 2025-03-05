@@ -12,7 +12,7 @@ def layout(gamename=None, tagline=None, **kwargs):
         playerdata = retrieve_player_data(gamename=gamename, tagline=tagline)
         puuid = playerdata.get("puuid")
 
-        game_id = api.get_match_ids_by_puuid(puuid=puuid, count=5)
+        game_id = api.get_match_ids_by_puuid(puuid=puuid, count=3)
         historyData = get_game_history_info(matchIds=game_id, puuid=puuid)
 
         return html.Div(
